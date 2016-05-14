@@ -183,7 +183,9 @@ class Player {
 
 //            System.out.println("8000 4500 100");
 //            System.out.println("8000 4500 100");
+            in.close();
         }
+
     }
 }
 
@@ -222,12 +224,9 @@ class Pod {
 	private int nextCheckPointId=0;
 	private HashMap<Integer, Integer> checks;
 	private int laps;
-	private int nCheckPoint;
-	
 	public Pod(int laps, int ncp){
 		this.laps = laps;
 		this.checks = new HashMap<>();
-		this.nCheckPoint = ncp;
 	}
 	
 	public void PodStatus(int x, int y, int vx, int vy, int angle, int checkId) {
@@ -270,17 +269,14 @@ class Pod {
 	
 	public int calculateSpeed(int x, int y){
             double sin, cos, tan;
-            double angle;
             double velocity;
             
             sin = Math.abs(this.getPosition().getY() - y);
             cos = Math.abs(this.getPosition().getX() - x);
            
             if(cos == 0){
-            	angle = 90;
             }else{
             	tan = sin/cos;
-            	angle = Math.toDegrees(Math.atan(tan));
             } 
 
             sin = Math.abs(this.getPosition().getY() -  this.getVelocity().getY() );
